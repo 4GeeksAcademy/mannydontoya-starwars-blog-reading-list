@@ -1,42 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Card } from "../component/card";
 
 export const Home = () => {
-	const [characters, setCharacters] = useState([]);
-	const [planets, setPlanets] = useState([]);
-	const [vehicles, setVehicles] = useState([]);
-	useEffect(() => {
-		fetch("https://www.swapi.tech/api/people")
-			.then(res => res.json())
-			.then(data => { setCharacters(data.results) })
-			.catch(err => { console.error(err) })
-		fetch("https://www.swapi.tech/api/planets")
-			.then(res => res.json())
-			.then(data => { setPlanets(data.results) })
-			.catch(err => { console.error(err) })
-		fetch("https://www.swapi.tech/api/vehicles")
-			.then(res => res.json())
-			.then(data => { setVehicles(data.results) })
-			.catch(err => { console.error(err) })
-	}, []);
-
+	const { store, actions } = useContext(Context);
 
 	return (
 		<div>
 			<h1>Characters</h1>
 			<ul className="d-flex overflow-auto">
-				{characters.map((character, index) => <Card character={character} />
+				{store.characters.map((character, index) => <Card item={character} index={index} key={index} category="characters" />
 				)}
 			</ul>
 			<h1>Planets</h1>
 			<ul className="d-flex overflow-auto">
-				{planets.map((planet, index) => <Card planet={planet} />
+				{store.planets.map((planet, index) => <Card item={planet} index={index} key={index} category="planets" />
 				)}
 			</ul>
 			<h1>Vehicles</h1>
 			<ul className="d-flex overflow-auto">
-				{vehicles.map((vehicle, index) => <Card vehicle={vehicle} />
+				{store.vehicles.map((vehicle, index) => <Card item={vehicle} index={index} key={index} category="vehicles" />
 				)}
 			</ul>
 		</div>
