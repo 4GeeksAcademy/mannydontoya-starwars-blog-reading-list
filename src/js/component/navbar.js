@@ -1,16 +1,48 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import newstarwarslogo from "../../img/newstarwarslogo.png";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+
+	const handleDeleteFavorite = (index) => {
+		actions.deleteFavorites(index);
+	};
+
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
+		<nav className="navbar navbar-dark bg-black py-3">
+			<div className="container">
+				<Link to="/" className="navbar-brand">
+					<img 
+						id="swLogo" 
+						src={newstarwarslogo} 
+						alt="Star Wars Logo" 
+						className="img-fluid" 
+						style={{ maxHeight: '100px', width: 'auto' }} 
+					/>
 				</Link>
+				<div className="dropdown">
+					<button id="favBtn" type="button" className="btn btn-outline-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+						Favorites <span className="badge bg-secondary">{store.favorites.length}</span>
+					</button>
+					<ul className="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+						{store.favorites.length > 0 ? (
+							store.favorites.map((favs, index) => (
+								<li key={index} className="dropdown-item d-flex justify-content-between align-items-center">
+									<Link to={"/details/" + favs.category + "/" + favs.index} className="text-white text-decoration-none">
+										{favs.name}
+									</Link>
+									<button onClick={() => handleDeleteFavorite(index)} className="btn btn-sm btn-outline-danger ms-2">
+										<i className="fas fa-trash"></i>
+									</button>
+								</li>
+							))
+						) : (
+							<li className="dropdown-item text-center">(empty)</li>
+						)}
+					</ul>
+				</div>
 			</div>
 		</nav>
 	);

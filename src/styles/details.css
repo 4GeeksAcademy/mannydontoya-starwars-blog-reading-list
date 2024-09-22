@@ -1,0 +1,63 @@
+.detailsDiv {
+    margin-top: 6.5rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    overflow: auto;
+}
+
+.detailsTopDiv {
+    position: relative;
+    min-height: 450px;
+    display: flex;
+    flex-wrap: nowrap;    
+    color: #ccc;
+}
+
+.detailsImgDiv {
+    width: 50%;
+}
+.detailsImg {
+    width: 100%;
+}
+
+.detailsTextDiv {
+    width: 50%;
+    text-align: center;
+}
+h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.detailsTextDiv > p {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.detailsBtmDiv {
+    color: #cc0020;
+    width: 100%;
+    padding-top: 2rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.btmDivs {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.btmDivs > h6, p {
+    padding-left: 0;
+    padding-right: 0;
+}
+.btmDivs > h6 {
+    text-decoration: underline;
+    margin-bottom: auto;
+}
+.btmDivs > p {
+    margin-top: auto;
+}

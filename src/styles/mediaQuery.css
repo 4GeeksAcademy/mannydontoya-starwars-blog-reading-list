@@ -1,0 +1,26 @@
+@media (max-width: 768px) {
+    #favBtn {
+        margin-bottom: -56px;
+        margin-left: 28px;
+        margin-right: 0px;
+    }
+    .dropdown-menu {
+        margin-top: 0px !important;
+        margin-left: 28px;
+    }
+    #swLogo {
+        width: 180px;
+        margin-top: 16px;
+        margin-left: 0px;
+        margin-right: 8px;
+    }
+
+    #detailsName {
+        font-size: 20px;
+    }
+    #detailsNameDesc {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 12px;
+    }
+}

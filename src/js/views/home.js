@@ -1,28 +1,39 @@
 import React, { useContext } from "react";
-import { Context } from "../store/appContext";
+import { Context } from "../store/appContext.js";
+
+import { Card } from "../component/card.js";  // Updated import to use lowercase 'card.js'
+
 import "../../styles/home.css";
-import { Card } from "../component/card";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+	const { store } = useContext(Context);
 
 	return (
-		<div>
-			<h1>Characters</h1>
-			<ul className="d-flex overflow-auto">
-				{store.characters.map((character, index) => <Card item={character} index={index} key={index} category="characters" />
-				)}
-			</ul>
-			<h1>Planets</h1>
-			<ul className="d-flex overflow-auto">
-				{store.planets.map((planet, index) => <Card item={planet} index={index} key={index} category="planets" />
-				)}
-			</ul>
-			<h1>Vehicles</h1>
-			<ul className="d-flex overflow-auto">
-				{store.vehicles.map((vehicle, index) => <Card item={vehicle} index={index} key={index} category="vehicles" />
-				)}
-			</ul>
+		<div id="homePage">
+			<div className="mt-5 d-flex flex-column w-100 align-items-center">
+				<h1>Characters</h1>
+				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+					{store.characters.map((item, index) => (
+						<Card item={item} index={index} key={index} category="characters" />
+					))}
+				</div>
+			</div>
+			<div className="mt-5 d-flex flex-column w-100 align-items-center">
+				<h1>Planets</h1>
+				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+					{store.planets.map((item, index) => (
+						<Card item={item} index={index} key={index} category="planets" />
+					))}
+				</div>
+			</div>
+			<div className="mt-5 d-flex flex-column w-100 align-items-center">
+				<h1>Starships</h1>
+				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+					{store.starships.map((item, index) => (
+						<Card item={item} index={index} key={index} category="starships" />
+					))}
+				</div>
+			</div>
 		</div>
 	)
-};
+}
