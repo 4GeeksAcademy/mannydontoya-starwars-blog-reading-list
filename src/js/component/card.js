@@ -42,18 +42,17 @@ export const Card = ({ item, index, category }) => {
     );
 
     const handleFavorites = () => {
-        const isFavorite = store.favorites.some(fav => fav.name === item.name && fav.category === category);
+        const id = `${category}-${index}`;
+        const isFavorite = store.favorites.some(fav => fav.id === id);
+        
         if (isFavorite) {
-            const indexToDelete = store.favorites.findIndex(fav => fav.name === item.name && fav.category === category);
-            if (indexToDelete !== -1) {
-                actions.deleteFavorites(indexToDelete);
-            }
+            actions.deleteFavorites(id);
         } else {
             actions.addFavorites({ name: item.name, index, category });
         }
     };
     
-    const isFavorite = store.favorites.some(fav => fav.name === item.name && fav.category === category);
+    const isFavorite = store.favorites.some(fav => fav.id === `${category}-${index}`);
 
     return (
         <div className="card bg-dark text-light border border-warning" style={{ boxShadow: '0 0 10px rgba(255, 232, 31, 0.5)' }}>
@@ -94,7 +93,7 @@ export const Card = ({ item, index, category }) => {
                         <button type="button" className="btn btn-warning text-dark">Learn more!</button>
                     </Link>
                     <button type="button" className="btn btn-outline-warning" onClick={handleFavorites}>
-                    <i className="fas fa-heart"></i>                    
+                        <i className={`fas fa-heart ${isFavorite ? 'text-warning' : ''}`}></i>
                     </button>
                 </div>
             </div>

@@ -54,13 +54,13 @@ body {
     z-index: 1;
   }
   
-  /* Ensure all content is above the starfield */
+  
   #layoutDiv > * {
     position: relative;
     z-index: 2;
   }
   
-  /* Optional: Add a subtle glow to stars */
+  
   #stars:after, #stars2:after, #stars3:after {
     content: " ";
     position: absolute;

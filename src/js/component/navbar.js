@@ -6,8 +6,8 @@ import newstarwarslogo from "../../img/newstarwarslogo.png";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
-	const handleDeleteFavorite = (index) => {
-		actions.deleteFavorites(index);
+	const handleDeleteFavorite = (id) => {
+		actions.deleteFavorites(id);
 	};
 
 	return (
@@ -26,14 +26,21 @@ export const Navbar = () => {
 					<button id="favBtn" type="button" className="btn btn-outline-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 						Favorites <span className="badge bg-secondary">{store.favorites.length}</span>
 					</button>
-					<ul className="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+					<ul className="dropdown-menu dropdown-menu-end dropdown-menu-dark" style={{ zIndex: 1050 }}>
 						{store.favorites.length > 0 ? (
-							store.favorites.map((favs, index) => (
-								<li key={index} className="dropdown-item d-flex justify-content-between align-items-center">
-									<Link to={"/details/" + favs.category + "/" + favs.index} className="text-white text-decoration-none">
-										{favs.name}
+							store.favorites.map((fav) => (
+								<li key={fav.id} className="dropdown-item d-flex justify-content-between align-items-center">
+									<Link to={"/details/" + fav.category + "/" + fav.index} className="text-white text-decoration-none">
+										{fav.name}
 									</Link>
-									<button onClick={() => handleDeleteFavorite(index)} className="btn btn-sm btn-outline-danger ms-2">
+									<button 
+										onClick={(e) => {
+											e.preventDefault();
+											e.stopPropagation();
+											handleDeleteFavorite(fav.id);
+										}} 
+										className="btn btn-sm btn-outline-danger ms-2"
+									>
 										<i className="fas fa-trash"></i>
 									</button>
 								</li>

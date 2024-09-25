@@ -43,24 +43,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 		},
 		actions: {
-
 			getCharacters: () => fetchDataIfNeeded('characters', 'people', 'characters'),
 			getPlanets: () => fetchDataIfNeeded('planets', 'planets', 'planets'),
 			getStarships: () => fetchDataIfNeeded('starships', 'starships', 'starships'),
 
 			addFavorites: (favItem) => {
-				const newFavorites = [...getStore().favorites, favItem]
+				const store = getStore();
+				const id = `${favItem.category}-${favItem.index}`;
+				const newFavorite = { ...favItem, id };
+				const newFavorites = [...store.favorites, newFavorite];
 				setStore({ favorites: newFavorites });
 				saveToLocalStorage('favorites', newFavorites);
 			},
-			deleteFavorites: (index) => {
-				const newFavorites = getStore().favorites.filter((_, i) => i !== index);
+			deleteFavorites: (id) => {
+				const store = getStore();
+				const newFavorites = store.favorites.filter(fav => fav.id !== id);
 				setStore({ favorites: newFavorites });
 				saveToLocalStorage('favorites', newFavorites);
 			}
 		}
 	};
 };
-
 
 export default getState;

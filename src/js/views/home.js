@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext.js";
 
-import { Card } from "../component/card.js";  // Updated import to use lowercase 'card.js'
+import { Card } from "../component/card.js";  
 
 import "../../styles/home.css";
 
